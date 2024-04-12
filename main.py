@@ -1,15 +1,22 @@
 from printer import printer
 from leds import leds
 from nfc import nfc
+import threading
+
+
+def prepare_new_fastpass():
+  printer.prepare_fastpass()
+
 
 def print_fastpass():
-  # printer.print_new_fastpass()
-  leds.start_print_pattern()
+  light_thread = threading.Thread(target=leds.start_print_pattern, name="Lights")
+  light_thread.start()
+  printer.print_new_fastpass()
 
 
 def listen_for_magic_bands():
   nfc.init()
-  # printer.init()
+  printer.init()
   leds.init()
 
   while True:
@@ -18,5 +25,7 @@ def listen_for_magic_bands():
 
 
 if __name__ == '__main__':
+  bg_thread = threading.Thread(target=prepare_new_fastpass, name="Image Preparer")
+  bg_thread.start()
   listen_for_magic_bands()
   

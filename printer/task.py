@@ -1,6 +1,6 @@
 import struct
 
-from utils import parse_battery_level
+from printer.utils import parse_battery_level
 
 START_CODE = 17167
 
