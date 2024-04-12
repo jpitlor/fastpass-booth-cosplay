@@ -20,7 +20,7 @@ def init():
 def start_print_pattern():
     width = 5
     pixels = strip.numPixels()
-    for cycle in range(20):
+    for cycle in range(50):
         for offset in range(pixels):
             for light in range(pixels):
                 will_overflow = offset + width >= pixels

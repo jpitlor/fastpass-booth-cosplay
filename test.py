@@ -1,5 +1,3 @@
-from leds import leds
+from printer import printer
 
-leds.init()  
-leds.start_print_pattern()
-  
+printer.prepare_fastpass()
