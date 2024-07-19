@@ -5,3 +5,4 @@ rpi_ws281x
 adafruit-circuitpython-pn532
 rpi.gpio
 pillow
+python-dateutil

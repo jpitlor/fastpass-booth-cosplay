@@ -20,7 +20,7 @@ def init():
 def start_print_pattern():
     width = 5
     pixels = strip.numPixels()
-    for cycle in range(50):
+    for cycle in range(65):
         for offset in range(pixels):
             for light in range(pixels):
                 will_overflow = offset + width >= pixels
@@ -32,5 +32,6 @@ def start_print_pattern():
             wait_ms = 50 * (math.cos(cycle * math.pi / 12) + 1) + 15
             print(wait_ms)
             time.sleep(wait_ms / 1000)
-
-
+    for i in range(pixels):
+        strip.setPixelColor(i, 0)
+    strip.show()

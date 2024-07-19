@@ -2,10 +2,13 @@ from printer import printer
 from leds import leds
 from nfc import nfc
 import threading
+import time
 
 
 def prepare_new_fastpass():
-  printer.prepare_fastpass()
+  while True:
+    printer.prepare_fastpass()
+    time.sleep(60)
 
 
 def print_fastpass():
