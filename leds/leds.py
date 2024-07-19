@@ -29,8 +29,7 @@ def start_print_pattern():
                 else:
                     strip.setPixelColor(light, 0)
             strip.show()
-            wait_ms = 50 * (math.cos(cycle * math.pi / 12) + 1) + 15
-            print(wait_ms)
+            wait_ms = 45 * math.cos(cycle * math.pi / 4) + 60
             time.sleep(wait_ms / 1000)
     for i in range(pixels):
         strip.setPixelColor(i, 0)
