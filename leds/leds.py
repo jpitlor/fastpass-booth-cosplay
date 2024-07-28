@@ -2,7 +2,7 @@ import time
 from rpi_ws281x import PixelStrip, Color
 import math
 
-LED_COUNT = 15        # Number of LED pixels.
+LED_COUNT = 25        # Number of LED pixels.
 LED_PIN = 18          # GPIO pin connected to the pixels (18 uses PWM!).
 LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
 LED_DMA = 10          # DMA channel to use for generating signal (try 10)
@@ -15,6 +15,9 @@ def init():
     global strip
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     strip.begin()
+    for i in range(LED_COUNT):
+        strip.setPixelColor(i, 0)
+    strip.show()
 
 
 def start_print_pattern():

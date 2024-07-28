@@ -11,7 +11,12 @@ BLACK = (0, 0, 0)
 def init():
     global printer
     printer = Ivy2Printer()
-    printer.connect(PRINTER_MAC)
+    while True:
+        try:
+            printer.connect(PRINTER_MAC)
+            break
+        except:
+            pass
 
 
 def print_new_fastpass():
