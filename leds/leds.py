@@ -1,6 +1,7 @@
 import time
 from rpi_ws281x import PixelStrip, Color
 import math
+import colorsys
 
 LED_COUNT = 25        # Number of LED pixels.
 LED_PIN = 18          # GPIO pin connected to the pixels (18 uses PWM!).
@@ -23,12 +24,15 @@ def init():
 def start_print_pattern():
     width = 5
     pixels = strip.numPixels()
+    hue = 0
     for cycle in range(65):
         for offset in range(pixels):
             for light in range(pixels):
                 will_overflow = offset + width >= pixels
                 if light in range(offset, offset + width) or (will_overflow and light in range(0, (offset + width) % pixels)):
-                    strip.setPixelColor(light, Color(0, 255, 0))
+                    r, g, b = colorsys.hls_to_rgb(hue / 360, 0.5, 1)
+                    hue = hue + 1
+                    strip.setPixelColor(light, Color(int(r * 255), int(g * 255), int(b * 255)))
                 else:
                     strip.setPixelColor(light, 0)
             strip.show()
