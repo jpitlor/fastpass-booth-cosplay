@@ -17,12 +17,12 @@ def print_fastpass():
   if light_thread is None or not light_thread.is_alive():
     light_thread = threading.Thread(target=leds.start_print_pattern, name="Lights")
     light_thread.start()
-  # printer.print_new_fastpass()
+    printer.print_new_fastpass()
 
 
 def listen_for_magic_bands():
   nfc.init()
-  # printer.init()
+  printer.init()
   leds.init()
 
   while True:
