@@ -4,6 +4,7 @@ from nfc import nfc
 import threading
 import time
 
+light_thread = None
 
 def prepare_new_fastpass():
   while True:
@@ -12,14 +13,16 @@ def prepare_new_fastpass():
 
 
 def print_fastpass():
-  light_thread = threading.Thread(target=leds.start_print_pattern, name="Lights")
-  light_thread.start()
-  printer.print_new_fastpass()
+  global light_thread
+  if light_thread is None or not light_thread.is_alive():
+    light_thread = threading.Thread(target=leds.start_print_pattern, name="Lights")
+    light_thread.start()
+  # printer.print_new_fastpass()
 
 
 def listen_for_magic_bands():
   nfc.init()
-  printer.init()
+  # printer.init()
   leds.init()
 
   while True:
